@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Greethings</title>
+        <style>
+            #dados{
+                color: Black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Obrigado por responder  o formulário...</h1>
+        <p id="dados"></p>
+    </body>
+    <script>
+    //Requerindo Dados...
+    window.addEventListener('DOMContentLoaded', function() {
+    // Função para decodificar os cookies
+    function decodeCookie(cookie) {
+        return decodeURIComponent(cookie.split('=')[1]);
+    }
+
+    // Obter os cookies gravados
+    var cookies = document.cookie.split(';');
+
+    // Variáveis para armazenar os valores dos cookies
+    var nome = '';
+    var email = '';
+    var msg = '';
+
+    // Iterar sobre os cookies e obter os valores desejados
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        if (cookie.startsWith('name=')) {
+            nome = decodeCookie(cookies);
+        } else if (cookie.startsWith('email=')) {
+            email = decodeCookie(cookies);
+        } else if (cookie.startsWith('msg=')) {
+            msg = decodeCookie(cookies);
+        }
+    }
+
+    // Exibir os valores no parágrafo
+    var dadosParagrafo = document.getElementById('dados');
+    dadosParagrafo.textContent = 'Nome: ' + nome + ', E-mail: ' + email + ', Mensagem: ' + msg;
+
+});
+    </script>
+</html>
